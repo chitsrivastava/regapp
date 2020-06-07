@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row mt-2 mb-2" *ngFor="let previewUser of userList">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-6 col-md-6 col-sm-6 left"><h4>Registration Details !! </h4></div>
+                       <div *ngIf="!previewUser.approved" class="col-lg-6 col-md-6 col-sm-12 right"><button (click)="approve(previewUser.email)"  class="btn btn-success">Approve Registration</button></div>
+                    </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <img class="img-fluid" [src]=previewUser.image>
+                        </div>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-4">
+                                <h5>Registration Number</h5>
+                                </div>
+                                <div class="col-8">
+                                    <a href="">{{previewUser.registrationId}}</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                <h5>Fullname</h5>
+                                </div>
+                                <div class="col-8">
+                                    {{previewUser.userName}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                <h5>Email</h5>
+                                </div>
+                                <div class="col-8">
+                                    {{previewUser.email}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h5>Contact Number</h5>
+                                </div>
+                                <div class="col-8">
+                                    {{previewUser.contactNumber}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h5>Registration Type</h5>
+                                </div>
+                                <div class="col-8">
+                                    {{previewUser.registrationType}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                <h5>Number of Tickets</h5>
+                                </div>
+                                <div class="col-8">
+                                    {{previewUser.numberOfTickets}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+<div id="overlay">
+    <div class="loginWindow">
+        <div class="card-header">
+            <div class="card-title">
+                <h4>Login</h4>
+            </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="login_error_message?.length>0">{{login_error_message}}</div>
+        <form [formGroup]="loginForm" (submit)="login()">
+            <input type="text" name="email" required class="form-control margin-bottom" placeholder="Email"
+                        formControlName="email">
+            <input type="password" name="password" required class="form-control margin-bottom" placeholder="Password" minlength=3
+                        formControlName="password">
+            <button type="submit" class="btn btn-primary margin-right" value="submit" [disabled]="loginForm.invalid">Submit</button>
+            <button type="button" class="btn btn-primary" (click)="hideLoginWindow()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<div class="curved-box" id="fullpage">
+    <ul>
+        <li class="registration">
+            Registration Form
+        </li>
+        <li class="shift-right link">
+                <div (click)="showLoginWindow()">Admin Login</div>
+                <div class="bar"></div>
+        </li>
+    </ul>
+</div>
+<div *ngIf="!preview" class="col-md-12 curved-div">
+
+    <form [formGroup]="registrationForm" (submit)="onRegistration()">
+        <div class="form-group">
+            <div class="alert alert-danger" *ngIf="error_message?.length>0">{{error_message}}</div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label>Full Name <p style="color:red;display:inline">*<p></label>
+                    <input type="text" name="username" class="form-control" required placeholder="Full Name"
+                        formControlName="username">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label>Email <p style="color:red;display:inline">*<p></label>
+                    <input type="email" name="email" (input)="registered()" required class="form-control" placeholder="Email address"
+                        formControlName="email">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label>Phone Number <p style="color:red;display:inline">*<p></label>
+                    <input type="text" name="contact" class="form-control" required placeholder="phone number"
+                        formControlName="contact">
+                </div>
+            </div>
+            <div class="row">
+            <br>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label>Registration Type <p style="color:red;display:inline">*<p></label>
+                    <select formControlName="registrationType" id="registrationType" required placeholder="Select" class="form-control">
+                    <option value="self" hidden>select</option>
+                        <option>Self</option>
+                        <option>Group</option>
+                        <option>Others</option>
+                        <option>Corporate</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label>Number of participants <p style="color:red;display:inline">*<p></label>
+                    <input type="number" max="10" min="1" placeholder="1" required name="numberOfParticipants"
+                        class="form-control" formControlName="numberOfParticipants">
+                </div>
+                <div >
+                    <div class="col-md-6">
+                        <label>Profile Picture <p style="color:red;display:inline">*<p></label>
+                        <input type="file" (change)="onFileChanged($event)" required formControlName="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div >
+                <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid || format">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="preview">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+
+                    <div class="row d-flex justify-content-center">
+                        <h4>Registration Details !! </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <img class="img-fluid" [src]=previewUser.image>
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Registration Number</h5>
+                            </div>
+                            <div class="col-8">
+                                {{previewUser.registrationId}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Fullname</h5>
+                            </div>
+                            <div class="col-8">
+                                {{previewUser.userName}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Email</h5>
+                            </div>
+                            <div class="col-8">
+                                {{previewUser.email}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Contact Number</h5>
+                            </div>
+                            <div class="col-8">
+                                {{previewUser.contactNumber}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Registration Type</h5>
+                            </div>
+                            <div class="col-8">
+                                {{previewUser.registrationType}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>Number of Tickets</h5>
+                            </div>
+                            <div class="col-8">
+                                {{previewUser.numberOfTickets}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary" (click)="backHome()">back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

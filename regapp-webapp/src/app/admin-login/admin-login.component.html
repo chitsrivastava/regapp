@@ -1,0 +1,42 @@
+<div class="container" *ngIf="admin">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <h4>Login</h4>
+            </div>
+            <div class="aleret alert-danger" *ngIf="error_message?.length>0">{{error_message}}</div>
+
+        </div>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (submit)="login()">
+                <input placeholder="email" type="email" class="form-control" name="email" formControlName="email">
+                <input type="password" placeholder="password" class="form-control" name="password"
+                    formControlName="password">
+                <input type="submit" class="btn btn-primary mr-2" value="login">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="superadmin">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <h4>Login</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-success" *ngIf="message?.length>0">{{message}}</div>
+
+            <form [formGroup]="loginForm" (submit)="signup()">
+                <input placeholder="email" type="email" class="form-control" name="email" formControlName="email">
+                <input type="password" placeholder="password" class="form-control" name="password"
+                    formControlName="password">
+                    <div class="alert alert-danger" *ngIf="error_message?.length>0">{{error_message}}</div>
+                <input type="submit" class="btn btn-primary mr-2" value="Add-Admin" [disabled]="loginForm.invalid">
+                <input type="button" class="btn btn-danger ml-2" value="Logout" [routerLink]="['/']">
+            </form>
+        </div>
+    </div>
+</div>
